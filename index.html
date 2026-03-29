@@ -524,7 +524,6 @@
     }
     .resume-btn {
   display: inline-block;
-  margin-top: 16px;
   padding: 10px 16px;
   border: 1.5px solid var(--text);
   font-size: 12px;
@@ -536,9 +535,13 @@
   transition: all 0.2s ease;
 }
 
-.resume-btn:hover {
+.left-resume {
+  margin-top: 24px;
+}
+    .resume-btn:hover {
   background: var(--text);
   color: white;
+  transform: translateY(-2px);
 }
   </style>
 </head>
@@ -548,7 +551,9 @@
       <div>
         <h1 class="left-name">Krishna<br>Biranje</h1>
         <div class="left-role">Mechatronics<br>Engineer</div>
+        <a href="resume.pdf" download class="resume-btn left-resume">Download Resume</a>
       </div>
+      
 
       <div class="left-meta">
         <div>Robotics Hardware</div>
