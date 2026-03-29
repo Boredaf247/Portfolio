@@ -137,27 +137,32 @@
     }
 
     .hero-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      align-items: flex-start;
-    }
-    .profile-block {
   display: flex;
+  justify-content: space-between;
+  gap: 24px;
   align-items: flex-start;
+  flex-wrap: wrap;
+}
+    ..profile-block {
+  display: grid;
+  grid-template-columns: 120px 1fr;
   gap: 18px;
+  align-items: start;
+  min-width: 0;
+  flex: 1;
 }
 
 .profile-image {
-  width: 140px;     
-  height: auto;     
+  width: 120px;
+  height: 150px;
+  object-fit: cover;
+  object-position: center top;
   border-radius: 20px;
-  flex-shrink: 0;
+  display: block;
 }
 
 .profile-details {
-  display: flex;
-  flex-direction: column;
+  min-width: 0;
 }
 
 .compact-contact {
@@ -165,32 +170,31 @@
   gap: 6px;
 }
 
-    .hero-name {
-      margin: 0;
-      font-size: clamp(28px, 2.2vw, 42px);
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
+   .hero-name {
+  margin: 0;
+  font-size: clamp(24px, 2vw, 34px);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
 
-    .hero-role {
-      margin-top: 10px;
-      font-size: 20px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-
-    .contact-grid {
-  display: grid;
-  grid-template-columns: 140px 1fr;
-  row-gap: 14px;
-  column-gap: 24px;
-  margin-top: 28px;
-  color: var(--muted);
+   .hero-role {
+  margin-top: 8px;
+  font-size: clamp(16px, 1.4vw, 22px);
   font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+  .contact-grid {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  row-gap: 12px;
+  column-gap: 18px;
+  margin-top: 18px;
+  color: var(--muted);
   align-items: center;
 }
 
@@ -208,7 +212,9 @@
 
 .contact-line span:last-child {
   font-weight: 600;
-  font-size: 16px;
+  font-size: 14px;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
     .hero-kicker {
@@ -221,13 +227,13 @@
     }
 
     .hero-statement {
-      margin-top: 44px;
-      max-width: 860px;
-      font-size: clamp(28px, 2.35vw, 46px);
-      line-height: 1;
-      font-weight: 700;
-      letter-spacing: -0.06em;
-    }
+  margin-top: 36px;
+  max-width: 100%;
+  font-size: clamp(20px, 2vw, 30px);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
 
     .tags {
       display: flex;
