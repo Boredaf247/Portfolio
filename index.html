@@ -289,6 +289,18 @@
       background: #cfcfcf;
       border: 1px solid var(--line);
     }
+    .image-row {
+      display: flex;
+      gap: 20px;
+      margin-top: 24px;
+}
+
+.image-row img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
 
     .project-image {
       width: 100%;
@@ -552,8 +564,9 @@
             <div>
               <h3 class="section-title">Robotic Manipulator Module</h3>
               <div class="section-subtitle">6-DOF Manipulator System</div>
-              <div class="image-wrap">
-                <img class="project-image" src="robotic manipulator.jpeg" alt="Robotic manipulator">
+              <div class="image-row">
+                <img src="robotic manipulator.jpeg">
+                <img src="rover.jpeg">
               </div>
               <div class="project-summary">
                 Developed a 6-DOF robotic manipulator with optimized link geometry, joint configuration, and actuator layout to maximise workspace reach and payload capacity.
