@@ -1,202 +1,725 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Krishna Biranje Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Krishna Biranje | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #dcdcdc;
+      --panel: rgba(245, 245, 245, 0.9);
+      --card: rgba(255, 255, 255, 0.68);
+      --text: #111111;
+      --muted: rgba(17, 17, 17, 0.58);
+      --soft: rgba(17, 17, 17, 0.3);
+      --line: rgba(17, 17, 17, 0.08);
+      --shadow: 0 18px 40px rgba(0, 0, 0, 0.05);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+    }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-body {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-  background: #f5f5f5;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* LEFT PANEL */
-.left {
-  width: 25%;
-  padding: 60px 40px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  height: 100%;
-  background: #f5f5f5;
-}
+    body {
+      margin: 0;
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+    }
 
-.left h1 {
-  font-size: 70px;
-  font-weight: 900;
-  line-height: 0.9;
-}
+    .layout {
+      display: grid;
+      grid-template-columns: 28vw 44vw 28vw;
+      height: 100vh;
+      min-height: 100vh;
+    }
 
-/* RIGHT PANEL */
-.right {
-  width: 30%;
-  position: fixed;
-  right: 0;
-  top: 0;
-  height: 100%;
-}
+    .left-panel,
+    .right-panel {
+      height: 100vh;
+      position: sticky;
+      top: 0;
+    }
 
-.right img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+    .left-panel {
+      padding: 32px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      border-right: 1px solid var(--line);
+    }
 
-/* CENTER SCROLL */
-.center {
-  margin-left: 25%;
-  margin-right: 30%;
-  height: 100vh;
-  overflow-y: scroll;
-  padding: 60px 40px;
-}
+    .left-name {
+      font-size: clamp(74px, 8vw, 138px);
+      font-weight: 900;
+      line-height: 0.82;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+      margin: 0;
+    }
 
-/* CARD */
-.card {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.6s ease;
-}
+    .left-role {
+      margin-top: 24px;
+      max-width: 280px;
+      font-size: clamp(38px, 4vw, 64px);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+      text-transform: uppercase;
+    }
 
-.card.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .left-meta {
+      display: grid;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
-.section-no {
-  font-weight: bold;
-  opacity: 0.4;
-  margin-bottom: 10px;
-}
+    .left-meta::before {
+      content: "";
+      width: 64px;
+      height: 1px;
+      background: var(--soft);
+      margin-bottom: 8px;
+    }
 
-.title {
-  font-size: 28px;
-  font-weight: 800;
-}
+    .center-panel {
+      height: 100vh;
+      overflow-y: auto;
+      padding: 20px;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(17, 17, 17, 0.25) transparent;
+    }
 
-.subtitle {
-  font-size: 14px;
-  opacity: 0.5;
-  margin-bottom: 20px;
-}
+    .center-panel::-webkit-scrollbar {
+      width: 8px;
+    }
 
-/* IMAGE FIXED HEIGHT + NO CROPPING */
-.project-image {
-  width: 100%;
-  height: 320px;
-  object-fit: contain;
-  background: #eaeaea;
-  border-radius: 15px;
-  margin-bottom: 20px;
-}
+    .center-panel::-webkit-scrollbar-thumb {
+      background: rgba(17, 17, 17, 0.2);
+      border-radius: 999px;
+    }
 
-.desc {
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4;
-}
+    .stack {
+      display: grid;
+      gap: 20px;
+      padding-bottom: 40px;
+    }
 
-/* SCROLLBAR CLEAN */
-.center::-webkit-scrollbar {
-  width: 6px;
-}
-.center::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-}
-</style>
-</head>
+    .panel {
+      background: var(--panel);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 28px;
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      backdrop-filter: blur(10px);
+    }
 
-<body>
+    .panel.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-<!-- LEFT -->
-<div class="left">
-  <h1>KRISHNA<br>BIRANJE</h1>
-</div>
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      align-items: flex-start;
+    }
 
-<!-- RIGHT -->
-<div class="right">
-  <img src="robotic manipulator.jpeg">
-</div>
+    .hero-name {
+      margin: 0;
+      font-size: clamp(34px, 3vw, 48px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
 
-<!-- CENTER -->
-<div class="center">
+    .hero-role {
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
 
-  <!-- 1 -->
-  <div class="card reveal">
-    <div class="section-no">(01)</div>
-    <div class="title">ROBOTIC MANIPULATOR MODULE</div>
-    <div class="subtitle">6-DOF MANIPULATOR SYSTEM</div>
-    <div class="image-row">   <img class="project-image" src="robotic manipulator.jpeg">   <img class="project-image" src="rover.jpeg"> </div>
-    <div class="desc">
-      Developed a 6-DOF robotic manipulator with optimized link geometry, joint configuration, and actuator layout to maximise workspace reach and payload.
-    </div>
-  </div>
+    .contact-grid {
+      display: grid;
+      gap: 10px;
+      margin-top: 28px;
+      color: var(--muted);
+      font-weight: 700;
+    }
 
-  <!-- 2 -->
-  <div class="card reveal">
-    <div class="section-no">(02)</div>
-    <div class="title">CYCLOIDAL DRIVE (50:1)</div>
-    <div class="subtitle">COMPACT HIGH-TORQUE DRIVETRAIN</div>
-    <img class="project-image" src="cycloidal.png">
-    <div class="desc">
-      Developed a high-reduction cycloidal drive for robotic manipulation applications requiring high output torque in a compact form factor.
-    </div>
-  </div>
+    .contact-line {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
 
-  <!-- 3 -->
-  <div class="card reveal">
-    <div class="section-no">(03)</div>
-    <div class="title">END EFFECTOR WITH INFINITE ROLL</div>
-    <div class="subtitle">CONTINUOUS ROTATION MECHANISM</div>
-    <img class="project-image" src="end effector.png">
-    <div class="desc">
-      Designed an end effector with infinite roll degree of freedom enabling continuous rotation for advanced robotic manipulation tasks.
-    </div>
-  </div>
+    .contact-line span:first-child {
+      min-width: 72px;
+      color: rgba(17, 17, 17, 0.35);
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      font-weight: 800;
+    }
 
-  <!-- 4 -->
-  <div class="card reveal">
-    <div class="section-no">(04)</div>
-    <div class="title">3D-PRINTED WHEEL SYSTEM</div>
-    <div class="subtitle">TERRAIN-ADAPTIVE MOBILITY</div>
-    <img class="project-image" src="wheel.png">
-    <div class="desc">
-      Developed a lightweight, terrain-adaptive wheel capable of traversing uneven surfaces while maintaining traction and structural performance.
-    </div>
-  </div>
+    .hero-kicker {
+      white-space: nowrap;
+      font-size: 14px;
+      font-weight: 900;
+      color: rgba(17, 17, 17, 0.32);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
 
-</div>
+    .hero-statement {
+      margin-top: 44px;
+      max-width: 860px;
+      font-size: clamp(28px, 2.35vw, 46px);
+      line-height: 0.94;
+      font-weight: 900;
+      letter-spacing: -0.06em;
+    }
 
-<script>
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show');
+    .tags {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      padding: 12px 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.62);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .tag:hover {
+      transform: translateY(-2px);
+      background: rgba(255,255,255,0.9);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 20px;
+    }
+
+    .section-no {
+      font-size: 18px;
+      font-weight: 900;
+      color: rgba(17, 17, 17, 0.32);
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: 30px;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .section-subtitle {
+      margin-top: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      color: rgba(17, 17, 17, 0.42);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .about-large,
+    .project-summary,
+    .contact-large {
+      margin-top: 28px;
+      font-size: clamp(22px, 1.8vw, 34px);
+      line-height: 0.98;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      max-width: 900px;
+    }
+
+    .about-body,
+    .contact-body {
+      margin-top: 20px;
+      max-width: 780px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.035);
+    }
+
+    .image-wrap {
+      margin-top: 24px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: #cfcfcf;
+      border: 1px solid var(--line);
+    }
+
+    .project-image {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s ease;
+    }
+
+    .point-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .point {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 16px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .right-panel {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .right-panel img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: slowZoom 10s ease forwards;
+    }
+
+    .right-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.08), rgba(0,0,0,0.24));
+    }
+
+    .right-card {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      padding: 22px;
+      border-radius: 24px;
+      color: white;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(14px);
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 1s ease 0.35s forwards;
+    }
+
+    .right-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: rgba(255,255,255,0.72);
+      font-weight: 800;
+    }
+
+    .right-copy {
+      margin-top: 14px;
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+    }
+
+    .mobile-layout {
+      display: none;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .mobile-stack {
+      display: grid;
+      gap: 16px;
+    }
+
+    .mobile-card {
+      background: var(--panel);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+
+    .mobile-title {
+      margin: 0;
+      font-size: 56px;
+      font-weight: 900;
+      line-height: 0.84;
+      letter-spacing: -0.08em;
+      text-transform: uppercase;
+    }
+
+    .mobile-sub {
+      margin-top: 10px;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .mobile-image {
+      width: 100%;
+      height: 42vh;
+      object-fit: cover;
+      border-radius: 22px;
+      margin-top: 18px;
+    }
+
+    .mobile-summary {
+      margin-top: 18px;
+      font-size: 18px;
+      line-height: 1.5;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    @keyframes slowZoom {
+      from {
+        transform: scale(1.08);
+        opacity: 0.92;
       }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 1100px) {
+      body {
+        overflow: auto;
+      }
+
+      .layout {
+        display: none;
+      }
+
+      .mobile-layout {
+        display: block;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .section-grid,
+      .point-grid,
+      .hero-top {
+        grid-template-columns: 1fr;
+        display: grid;
+      }
+
+      .hero-kicker {
+        white-space: normal;
+      }
+
+      .panel {
+        padding: 22px;
+      }
+
+      .section-title {
+        font-size: 24px;
+      }
+
+      .project-image {
+        height: 220px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="left-panel">
+      <div>
+        <h1 class="left-name">Krishna<br>Biranje</h1>
+        <div class="left-role">Mechatronics<br>Engineer</div>
+      </div>
+
+      <div class="left-meta">
+        <div>Robotics Hardware</div>
+        <div>Mechanical Design</div>
+        <div>Actuation Systems</div>
+        <div>FEA & Prototyping</div>
+      </div>
+    </aside>
+
+    <main class="center-panel">
+      <div class="stack">
+        <section class="panel reveal">
+          <div class="hero-top">
+            <div>
+              <h2 class="hero-name">Krishna Biranje</h2>
+              <div class="hero-role">Aspiring Mechatronics Engineer</div>
+
+              <div class="contact-grid">
+                <div class="contact-line"><span>Email</span><span>krishnabiranje1.offical@gmail.com</span></div>
+                <div class="contact-line"><span>Phone</span><span>+91-6362384646</span></div>
+                <div class="contact-line"><span>LinkedIn</span><span>linkedin.com/in/krishnabiranje</span></div>
+                <div class="contact-line"><span>Location</span><span>Manipal, India</span></div>
+              </div>
+            </div>
+
+            <div class="hero-kicker">Portfolio 2026</div>
+          </div>
+
+          <div class="hero-statement">
+            I design and build high-performance robotic systems, combining mechanical design, actuation, analysis, and rapid prototyping to deliver reliable real-world hardware.
+          </div>
+        </section>
+
+        <section class="panel reveal">
+          <div class="tags">
+            <div class="tag">Robotics</div>
+            <div class="tag">Manipulators</div>
+            <div class="tag">Cycloidal Drives</div>
+            <div class="tag">ANSYS Workbench</div>
+            <div class="tag">Rapid Prototyping</div>
+            <div class="tag">Mobility Systems</div>
+          </div>
+        </section>
+
+        <section class="panel reveal">
+          <div class="section-grid">
+            <div class="section-no">(00)</div>
+            <div>
+              <h3 class="section-title">About</h3>
+              <div class="about-large">
+                I am an aspiring mechatronics engineer focused on robotics hardware, actuator architecture, mechanical systems, and field-ready prototyping.
+              </div>
+              <div class="about-body">
+                My work combines first-principles design, system-level thinking, analysis, and hands-on development. I enjoy building hardware that is analytically sound, practical to manufacture, and reliable in real deployment conditions.
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel reveal project-card">
+          <div class="section-grid">
+            <div class="section-no">(01)</div>
+            <div>
+              <h3 class="section-title">Robotic Manipulator Module</h3>
+              <div class="section-subtitle">6-DOF Manipulator System</div>
+              <div class="image-wrap">
+                <img class="project-image" src="robotic manipulator.jpeg" alt="Robotic manipulator">
+              </div>
+              <div class="project-summary">
+                Developed a 6-DOF robotic manipulator with optimized link geometry, joint configuration, and actuator layout to maximise workspace reach and payload capacity.
+              </div>
+              <div class="point-grid">
+                <div class="point">Designed a custom end effector with infinite roll degree of freedom.</div>
+                <div class="point">Performed torque calculations based on payload, link mass, and worst-case reach.</div>
+                <div class="point">Optimised link lengths through kinematic and geometric evaluation to improve dexterity and reach.</div>
+                <div class="point">Conducted finite element analysis in ANSYS Workbench under static and dynamic loading.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel reveal project-card">
+          <div class="section-grid">
+            <div class="section-no">(02)</div>
+            <div>
+              <h3 class="section-title">Cycloidal Drive (50:1)</h3>
+              <div class="section-subtitle">Compact High-Torque Drivetrain</div>
+              <div class="image-wrap">
+                <img class="project-image" src="cycloidal.png" alt="Cycloidal drive">
+              </div>
+              <div class="project-summary">
+                Developed a high-reduction cycloidal drive for robotic manipulation applications requiring high output torque in a compact form factor.
+              </div>
+              <div class="point-grid">
+                <div class="point">Conducted detailed FEA on cycloidal discs and load-bearing components.</div>
+                <div class="point">Assessed stress distribution, contact behaviour, and stiffness under operating loads.</div>
+                <div class="point">Focused on compact packaging for high-performance robotic actuation.</div>
+                <div class="point">Engineered the system for robust torque transmission in space-constrained applications.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel reveal project-card">
+          <div class="section-grid">
+            <div class="section-no">(03)</div>
+            <div>
+              <h3 class="section-title">End Effector Featuring Infinite Roll Degree of Freedom</h3>
+              <div class="section-subtitle">Continuous Rotation Mechanism</div>
+              <div class="image-wrap">
+                <img class="project-image" src="end effector.png" alt="End effector">
+              </div>
+              <div class="project-summary">
+                Designed an end effector with infinite roll degree of freedom to enable continuous rotation for robotic manipulation tasks.
+              </div>
+              <div class="point-grid">
+                <div class="point">Developed a mechanical transmission-based solution to achieve infinite roll without slip rings.</div>
+                <div class="point">Eliminated wire entanglement risks while preserving a compact form factor.</div>
+                <div class="point">Integrated the mechanism for continuous power and signal transmission.</div>
+                <div class="point">Balanced reliability, compactness, and practical integration into the manipulator system.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel reveal project-card">
+          <div class="section-grid">
+            <div class="section-no">(04)</div>
+            <div>
+              <h3 class="section-title">3D-Printed Wheel Assembly</h3>
+              <div class="section-subtitle">Terrain-Adaptive Mobility System</div>
+              <div class="image-wrap">
+                <img class="project-image" src="wheel.png" alt="3D printed wheel assembly">
+              </div>
+              <div class="project-summary">
+                Developed a lightweight, terrain-adaptive wheel capable of traversing uneven surfaces while maintaining traction and accommodating structural loads.
+              </div>
+              <div class="point-grid">
+                <div class="point">Designed a WEGS-inspired wheel geometry incorporating a full-float bearing assembly.</div>
+                <div class="point">Improved traction and load distribution for rough-terrain performance.</div>
+                <div class="point">Evaluated material options and tuned print parameters including infill, layer height, wall thickness, and print orientation.</div>
+                <div class="point">Optimised stiffness, durability, and terrain adaptability through iterative prototyping.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel reveal">
+          <div class="section-grid">
+            <div class="section-no">(05)</div>
+            <div>
+              <h3 class="section-title">Contact</h3>
+              <div class="contact-large">
+                Open to internships, robotics hardware roles, actuator design work, and collaborative engineering projects.
+              </div>
+              <div class="contact-body">
+                krishnabiranje1.offical@gmail.com<br>
+                +91-6362384646<br>
+                linkedin.com/in/krishnabiranje<br>
+                Manipal, India
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <aside class="right-panel">
+      <img src="robotic manipulator.jpeg" alt="Engineering background">
+      <div class="right-overlay"></div>
+      <div class="right-card">
+        <div class="right-label">Focus</div>
+        <div class="right-copy">Robotics hardware engineered with precision, validated through analysis, and built for deployment.</div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="mobile-layout">
+    <div class="mobile-stack">
+      <section class="mobile-card">
+        <h1 class="mobile-title">Krishna<br>Biranje</h1>
+        <div class="mobile-sub">Mechatronics Engineer</div>
+        <img class="mobile-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80" alt="Engineering background">
+        <div class="mobile-summary">
+          I design and build high-performance robotic systems through mechanical design, analysis, and rapid prototyping.
+        </div>
+      </section>
+
+      <section class="mobile-card">
+        <div class="section-no">(01)</div>
+        <h3 class="section-title">Robotic Manipulator Module</h3>
+        <div class="section-subtitle">6-DOF Manipulator System</div>
+      </section>
+
+      <section class="mobile-card">
+        <div class="section-no">(02)</div>
+        <h3 class="section-title">Cycloidal Drive (50:1)</h3>
+        <div class="section-subtitle">Compact High-Torque Drivetrain</div>
+      </section>
+
+      <section class="mobile-card">
+        <div class="section-no">(03)</div>
+        <h3 class="section-title">End Effector</h3>
+        <div class="section-subtitle">Infinite Roll Degree of Freedom</div>
+      </section>
+
+      <section class="mobile-card">
+        <div class="section-no">(04)</div>
+        <h3 class="section-title">3D-Printed Wheel Assembly</h3>
+        <div class="section-subtitle">Terrain-Adaptive Mobility System</div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    window.addEventListener('load', () => {
+      document.querySelectorAll('.panel').forEach((panel, index) => {
+        setTimeout(() => panel.classList.add('show'), 120 * index);
+      });
     });
-  },
-  { threshold: 0.1 }
-);
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-</script>
-
+  </script>
 </body>
 </html>
