@@ -142,6 +142,29 @@
       gap: 24px;
       align-items: flex-start;
     }
+    .profile-block {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.profile-image {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.compact-contact {
+  margin-top: 18px;
+  gap: 6px;
+}
 
     .hero-name {
       margin: 0;
@@ -512,20 +535,24 @@
       <div class="stack">
         <section class="panel reveal">
           <div class="hero-top">
-            <div>
-              <h2 class="hero-name">Krishna Biranje</h2>
-              <div class="hero-role">Aspiring Mechatronics Engineer</div>
+  <div class="profile-block">
+    <img class="profile-image" src="me.png">
 
-              <div class="contact-grid">
-                <div class="contact-line"><span>Email</span><span>krishnabiranje1.offical@gmail.com</span></div>
-                <div class="contact-line"><span>Phone</span><span>+91-6362384646</span></div>
-                <div class="contact-line"><span>LinkedIn</span><span>linkedin.com/in/krishnabiranje</span></div>
-                <div class="contact-line"><span>Location</span><span>Manipal, India</span></div>
-              </div>
-            </div>
+    <div class="profile-details">
+      <h2 class="hero-name">Krishna Biranje</h2>
+      <div class="hero-role">Aspiring Mechatronics Engineer</div>
 
-            <div class="hero-kicker">Portfolio 2026</div>
-          </div>
+      <div class="contact-grid compact-contact">
+        <div class="contact-line"><span>Email</span><span>krishnabiranje1.offical@gmail.com</span></div>
+        <div class="contact-line"><span>Phone</span><span>+91-6362384646</span></div>
+        <div class="contact-line"><span>LinkedIn</span><span>linkedin.com/in/krishnabiranje</span></div>
+        <div class="contact-line"><span>Location</span><span>Manipal, India</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-kicker">Portfolio 2026</div>
+</div>
 
           <div class="hero-statement">
             I design and build high-performance robotic systems, combining mechanical design, actuation, analysis, and rapid prototyping to deliver reliable real-world hardware.
