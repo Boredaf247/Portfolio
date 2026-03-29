@@ -484,19 +484,34 @@
       }
     }
 
-    @media (max-width: 1100px) {
-      body {
-        overflow: auto;
-      }
+@media (max-width: 1100px) {
+  body {
+    overflow: auto;
+  }
 
-      .layout {
-        display: none;
-      }
+  .layout {
+    display: grid;
+    grid-template-columns: 1fr; /* 🔥 THIS is key */
+    height: auto;
+  }
 
-      .mobile-layout {
-        display: block;
-      }
-    }
+  .mobile-layout {
+    display: none;
+  }
+
+  .left-panel,
+  .center-panel,
+  .right-panel {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border: none;
+  }
+
+  .center-panel {
+    overflow: visible;
+  }
+}
 
     @media (max-width: 760px) {
       .section-grid,
