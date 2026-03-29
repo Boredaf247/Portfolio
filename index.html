@@ -491,7 +491,7 @@
 
   .layout {
     display: grid;
-    grid-template-columns: 1fr; /* 🔥 THIS is key */
+    grid-template-columns: 1fr;
     height: auto;
   }
 
@@ -499,20 +499,21 @@
     display: none;
   }
 
-  .left-panel,
+  .left-panel {
+    display: none; /* 🔥 THIS FIXES YOUR ISSUE */
+  }
+
   .center-panel,
   .right-panel {
     width: 100%;
     height: auto;
     position: relative;
-    border: none;
   }
 
   .center-panel {
     overflow: visible;
   }
 }
-
     @media (max-width: 760px) {
       .section-grid,
       .point-grid,
