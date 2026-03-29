@@ -185,28 +185,32 @@
     }
 
     .contact-grid {
-      display: grid;
-      gap: 10px;
-      margin-top: 28px;
-      color: var(--muted);
-      font-weight: 700;
-    }
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  row-gap: 14px;
+  column-gap: 24px;
+  margin-top: 28px;
+  color: var(--muted);
+  font-weight: 700;
+  align-items: center;
+}
 
-    .contact-line {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
+.contact-line {
+  display: contents;
+}
 
-    .contact-line span:first-child {
-      min-width: 72px;
-      color: rgba(17, 17, 17, 0.35);
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      font-weight: 800;
-    }
+.contact-line span:first-child {
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  font-size: 12px;
+}
+
+.contact-line span:last-child {
+  font-weight: 600;
+  font-size: 16px;
+}
 
     .hero-kicker {
       white-space: nowrap;
